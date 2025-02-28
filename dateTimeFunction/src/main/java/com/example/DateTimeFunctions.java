@@ -22,9 +22,10 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getTodaysDate() {
 		//YOUR CODE STARTS HERE
-		return null;
+		//This calls Java's built-in method that fetches the current system date.
+		//The method then returns the current date as a LocalDate object.
+		return LocalDate.now();
 		//YOUR CODE ENDS HERE
-
 	}
 
 	/*
@@ -33,9 +34,10 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getLaterDatebyDays(LocalDate date, int x) {
 		//YOUR CODE STARTS HERE
-		return null;
+		//Adds x days to the given date and returns a new LocalDate object.
+		//This does not modify the original date since LocalDate is immutable.
+		return date.plusDays(x);
 		//YOUR CODE ENDS HERE
-
 	}
 
 	/*
@@ -44,9 +46,10 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getPreviousDatebyWeeks(LocalDate date, int x) {
 		//YOUR CODE STARTS HERE
-		return null;
+		//Subtracts x weeks from the given date and returns a new LocalDate object.
+		//This does not modify the original date since LocalDate is immutable.
+		return date.minusWeeks(x);
 		//YOUR CODE ENDS HERE
-
 	}
 
 	/*
@@ -56,10 +59,20 @@ public class DateTimeFunctions {
 	 */
 	public static String getTimeDifference(LocalDate date1, LocalDate date2) {
 		//YOUR CODE STARTS HERE
-		return null;
+		// Ensure date1 is earlier than date2 to avoid negative values
+		//If date1 is later than date2, it swaps them to avoid negative values
+		if (date1.isAfter(date2)) {
+			LocalDate temp = date1;
+			date1 = date2;
+			date2 = temp;
+		}
+		//Creates a Period object representing the difference between date1 and date2
+		Period period = Period.between(date1, date2);
+		//Returns the formatted string representation of the time difference.
+		return "Years-" + period.getYears() + ":Months-" + period.getMonths() + ":Days-" + period.getDays();
+	}
 		//YOUR CODE ENDS HERE
 
-	}
 
 	public static void main(String[] args) {
 		System.out.println("Today's date is: " + getTodaysDate());
